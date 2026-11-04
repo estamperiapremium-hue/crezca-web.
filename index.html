@@ -117,8 +117,7 @@ section{padding:112px 0 0}
 .lead{color:var(--ink-2);max-width:52ch;margin-top:20px;font-size:18px}
 
 /* trabajos: paneo horizontal */
-.work{padding-top:96px;padding-bottom:24px}
-@media (min-width:768px){.work{min-height:100dvh;display:flex;flex-direction:column;justify-content:center}}
+.work{padding-top:112px}
 .work-head{display:flex;flex-direction:column;gap:6px;margin-bottom:44px}
 .pan{overflow:hidden}
 .pan-track{display:flex;gap:22px;width:max-content;padding:0 max(16px,calc((100vw - 1280px)/2))}
@@ -129,7 +128,18 @@ section{padding:112px 0 0}
 .card h3{font:700 20px/1.2 var(--fd);margin-top:16px;letter-spacing:-.01em}
 .card p{font-size:15px;color:var(--ink-2);margin-top:4px}
 .card.tall .media{aspect-ratio:9/16}
-@media (max-width:767px){.pan{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}.card{scroll-snap-align:center;width:72vw}}
+.pan{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;padding-bottom:8px;overscroll-behavior-x:contain}
+.pan::-webkit-scrollbar{display:none}
+.pan.dragging{cursor:grabbing}.pan.dragging .card{pointer-events:none}
+.pan .card,.pan img,.pan video{user-select:none;-webkit-user-drag:none}
+.work-head .row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.arrows{display:flex;gap:8px}
+.arrows button{width:52px;height:52px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--ease)}
+.arrows button:hover{background:var(--ink);color:var(--bg)}
+.arrows button:active{transform:scale(.94)}
+.arrows svg{width:22px;height:22px}
+.drag-hint{font-size:14px;color:var(--ink-2);margin-top:14px}
+@media (max-width:767px){.pan{scroll-snap-type:x mandatory}.card{scroll-snap-align:center;width:72vw}.arrows{display:none}}
 
 /* caso Di Cuore */
 .case{display:grid;gap:48px;margin-top:8px}
@@ -300,8 +310,16 @@ footer a{text-underline-offset:3px}
 
   <section class="work" id="trabajos">
     <div class="wrap work-head">
-      <h2 class="h2 rv">Trabajos recientes para clientes.</h2>
-      <p class="lead rv">Carruseles con producto, precio y medidas, pensados para vender desde la publicación.</p>
+      <div class="row">
+        <div>
+          <h2 class="h2 rv">Trabajos recientes para clientes.</h2>
+          <p class="lead rv">Carruseles con producto, precio y medidas, pensados para vender desde la publicación. Arrastrá para ver más.</p>
+        </div>
+        <div class="arrows rv">
+          <button type="button" id="prevW" aria-label="Ver trabajos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" id="nextW" aria-label="Ver más trabajos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
     <div class="pan" id="pan">
       <div class="pan-track" id="panTrack">
@@ -496,6 +514,35 @@ const TESTIMONIOS = [
   });
 })();
 
+/* Trabajos: se arrastran con el mouse (con inercia) o con las flechas */
+(function(){
+  const pan=document.getElementById('pan');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let down=false,moved=false,startX=0,startL=0,lastX=0,lastT=0,vel=0,raf=0;
+  pan.addEventListener('pointerdown',e=>{
+    if(e.pointerType!=='mouse'||e.button!==0) return;
+    cancelAnimationFrame(raf);down=true;moved=false;startX=lastX=e.clientX;startL=pan.scrollLeft;lastT=performance.now();vel=0;
+  });
+  window.addEventListener('pointermove',e=>{
+    if(!down) return;
+    const dx=e.clientX-startX;
+    if(!moved&&Math.abs(dx)>5){moved=true;pan.classList.add('dragging');}
+    if(moved){pan.scrollLeft=startL-dx;const t=performance.now();vel=(e.clientX-lastX)/Math.max(1,t-lastT);lastX=e.clientX;lastT=t;}
+  });
+  window.addEventListener('pointerup',()=>{
+    if(!down) return;down=false;
+    setTimeout(()=>pan.classList.remove('dragging'),0);
+    if(!moved||reduce) return;
+    let v=-vel*16;
+    const step=()=>{pan.scrollLeft+=v;v*=.94;if(Math.abs(v)>.5) raf=requestAnimationFrame(step);};
+    raf=requestAnimationFrame(step);
+  });
+  pan.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+  const by=()=>{const c=pan.querySelector('.card');return c?c.getBoundingClientRect().width+22:320;};
+  document.getElementById('nextW').addEventListener('click',()=>pan.scrollBy({left:by()*2,behavior:reduce?'auto':'smooth'}));
+  document.getElementById('prevW').addEventListener('click',()=>pan.scrollBy({left:-by()*2,behavior:reduce?'auto':'smooth'}));
+})();
+
 /* Videos: cargan y se reproducen solo cuando están en pantalla */
 (function(){
   const vids=document.querySelectorAll('video');
@@ -541,14 +588,6 @@ const TESTIMONIOS = [
   const track=document.querySelector('.marquee .track');
   ScrollTrigger.create({onUpdate:s=>{const v=Math.min(Math.abs(s.getVelocity())/600,3);track.style.animationDuration=(32/(1+v))+'s';}});
 
-  /* Trabajos: paneo horizontal fijado (solo escritorio) */
-  ScrollTrigger.matchMedia({
-    '(min-width: 768px)':function(){
-      const pan=document.getElementById('pan'),t=document.getElementById('panTrack');
-      const dist=()=>Math.max(0,t.scrollWidth-window.innerWidth);
-      gsap.to(t,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#trabajos',start:'top top',end:()=>'+='+dist(),pin:'#trabajos',scrub:1,invalidateOnRefresh:true}});
-    }
-  });
 
   /* Columnas de historias a distinta velocidad */
   gsap.to('.col-b',{y:-80,ease:'none',scrollTrigger:{trigger:'.stories',start:'top bottom',end:'bottom top',scrub:true}});
