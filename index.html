@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CREZCA · Estudio creativo de Zona Sur</title>
+<meta name="description" content="Gestionamos las redes de comercios e inmobiliarias de Zona Sur: estrategia, carruseles, historias, reels con motion y publicación.">
+<meta property="og:title" content="CREZCA · Estudio creativo">
+<meta property="og:description" content="Redes que se ven como tu marca y trabajan para ella. Zona Sur, Buenos Aires.">
+<meta property="og:image" content="media/fd-color.jpg">
+<meta name="theme-color" content="#1C311F">
+<link rel="icon" href="crezca-isotipo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2EA;          /* salvia muy clara */
+  --bg-2:#E1EAD9;
+  --surface:#FBFCF8;
+  --ink:#1C311F;         /* verde bosque del logo */
+  --ink-2:#465A47;
+  --line:rgba(28,49,31,.14);
+  --salvia:#D2E0CC;
+  --accent:#C7F25C;      /* lima: un solo acento, para crecer */
+  --on-accent:#1C311F;
+  --deep:#1C311F;
+  --on-deep:#EEF2EA;
+  --fd:'Bricolage Grotesque',system-ui,sans-serif;
+  --fb:'Instrument Sans',system-ui,sans-serif;
+  --r:22px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A11;--bg-2:#152418;--surface:#17271A;--ink:#E3ECDD;--ink-2:#A9BBA6;--line:rgba(227,236,221,.14);
+  --deep:#08110A;--on-deep:#E3ECDD;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A11;--bg-2:#152418;--surface:#17271A;--ink:#E3ECDD;--ink-2:#A9BBA6;--line:rgba(227,236,221,.14);
+    --deep:#08110A;--on-deep:#E3ECDD;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--fb);-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1280px,100% - 32px);margin-inline:auto}
+@media (min-width:768px){.wrap{width:min(1280px,100% - 64px)}}
+h1,h2,h3{font-family:var(--fd);letter-spacing:-.025em;line-height:1.02;font-weight:800}
+.logo-dark{display:block}.logo-light{display:none}
+:root[data-theme="dark"] .logo-dark{display:none}:root[data-theme="dark"] .logo-light{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-dark{display:none}:root:not([data-theme="light"]) .logo-light{display:block}}
+
+/* ---------- botones ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;font:600 16px/1 var(--fb);
+  padding:17px 26px;border-radius:999px;transition:transform .35s var(--ease),background .3s;will-change:transform}
+.btn:active{transform:scale(.97)}
+.btn svg{width:19px;height:19px;flex:none}
+.btn-main{background:var(--accent);color:var(--on-accent)}
+.btn-main:hover{transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:12px 0 auto;z-index:40;pointer-events:none}
+.nav .bar{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 8px 0 20px;
+  border-radius:999px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);
+  border:1px solid var(--line);transition:transform .5s var(--ease)}
+.nav.hide .bar{transform:translateY(-90px)}
+.nav img{height:24px;width:auto}
+.nav .links{display:none;gap:30px;font-weight:500;font-size:15px}
+.nav .links a{text-decoration:none;opacity:.75;transition:opacity .2s}.nav .links a:hover{opacity:1}
+.nav .right{display:flex;align-items:center;gap:6px}
+.icon-btn{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none}
+.icon-btn svg{width:20px;height:20px}
+.nav .btn{padding:12px 18px;font-size:14.5px}
+@media (min-width:900px){.nav .links{display:flex}}
+@media (max-width:520px){.nav .btn span{display:none}.nav .btn{padding:12px}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100dvh;display:grid;align-items:center;padding:104px 0 56px;position:relative}
+.hero-grid{display:grid;gap:44px;align-items:center}
+@media (min-width:960px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:24px}}
+.hero h1{font-size:clamp(46px,7.2vw,96px)}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.08em;height:.32em;background:var(--accent);z-index:-1;border-radius:6px;transform-origin:left;transform:scaleX(var(--mark,1))}
+.hero p{font-size:clamp(17px,1.5vw,20px);color:var(--ink-2);max-width:30ch;margin-top:26px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.stage{position:relative;height:min(78vh,640px);min-height:460px}
+.phone{position:absolute;width:min(42%,250px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:var(--bg-2);
+  box-shadow:0 30px 60px -24px rgba(16,38,20,.45),0 0 0 1px var(--line)}
+.phone video,.phone img{width:100%;height:100%;object-fit:cover}
+.phone.p1{left:4%;top:12%;rotate:-7deg}
+.phone.p2{left:31%;top:2%;z-index:2;width:min(46%,276px)}
+.phone.p3{right:2%;top:16%;rotate:6deg}
+.sticker{position:absolute;z-index:3;left:24%;bottom:2%;background:var(--accent);color:var(--on-accent);font:700 15px/1.2 var(--fd);
+  padding:14px 18px;border-radius:999px;rotate:-4deg;display:flex;gap:10px;align-items:center;text-decoration:none}
+.sticker svg{width:20px;height:20px}
+@media (max-width:959px){.stage{height:520px;min-height:0}.phone.p1{left:0}.phone.p3{right:0}}
+@media (max-width:520px){.stage{height:430px}}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--deep);color:var(--on-deep);padding:26px 0;overflow:hidden;rotate:-1.5deg;margin:24px -20px 0;position:relative;z-index:1}
+.marquee .track{display:flex;gap:44px;width:max-content;font:800 clamp(30px,4.6vw,58px)/1 var(--fd);letter-spacing:-.02em;animation:mq 32s linear infinite}
+.marquee span{display:flex;align-items:center;gap:44px}
+.marquee img{height:.8em;width:auto}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- secciones ---------- */
+section{padding:112px 0 0}
+.h2{font-size:clamp(38px,5.4vw,72px);max-width:16ch}
+.lead{color:var(--ink-2);max-width:52ch;margin-top:20px;font-size:18px}
+
+/* trabajos: paneo horizontal */
+.work{padding-top:96px;padding-bottom:24px}
+@media (min-width:768px){.work{min-height:100dvh;display:flex;flex-direction:column;justify-content:center}}
+.work-head{display:flex;flex-direction:column;gap:6px;margin-bottom:44px}
+.pan{overflow:hidden}
+.pan-track{display:flex;gap:22px;width:max-content;padding:0 max(16px,calc((100vw - 1280px)/2))}
+.card{width:clamp(250px,26vw,340px);flex:none;text-decoration:none}
+.card .media{aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;background:var(--bg-2);position:relative;box-shadow:0 0 0 1px var(--line)}
+.card .media video,.card .media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover .media video{transform:scale(1.04)}
+.card h3{font:700 20px/1.2 var(--fd);margin-top:16px;letter-spacing:-.01em}
+.card p{font-size:15px;color:var(--ink-2);margin-top:4px}
+.card.tall .media{aspect-ratio:9/16}
+@media (max-width:767px){.pan{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}.card{scroll-snap-align:center;width:72vw}}
+
+/* caso Di Cuore */
+.case{display:grid;gap:48px;margin-top:8px}
+@media (min-width:960px){.case{grid-template-columns:.9fr 1.1fr;gap:64px}.case .sticky{position:sticky;top:110px;align-self:start}}
+.client-tag{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--ink-2)}
+.client-tag b{width:34px;height:34px;border-radius:999px;background:#16233A;color:#C9A870;display:grid;place-items:center;font:700 13px var(--fd)}
+.stages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.stages div{border-radius:16px;padding:18px;background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+.stages strong{font:700 19px var(--fd);display:block}
+.stages span{font-size:14.5px;color:var(--ink-2)}
+.case .btn{margin-top:30px}
+.stories{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stories .phone-s{border-radius:20px;overflow:hidden;aspect-ratio:9/16;background:var(--bg-2);box-shadow:0 0 0 1px var(--line)}
+.stories .phone-s video{width:100%;height:100%;object-fit:cover}
+.stories .col-b{margin-top:90px}
+.stories .col{display:grid;gap:16px;align-content:start}
+@media (max-width:520px){.stories .col-b{margin-top:48px}}
+
+/* más clientes */
+.duo{display:grid;gap:20px;margin-top:44px}
+@media (min-width:860px){.duo{grid-template-columns:1fr 1fr}}
+.duo article{border-radius:28px;padding:30px;display:grid;grid-template-columns:1fr 150px;gap:22px;align-items:end;overflow:hidden;min-height:360px}
+.duo .bonatti{background:#002D5E;color:#F3F6FA}
+.duo .arte{background:#2849DF;color:#F7F6F1}
+.duo h3{font-size:clamp(28px,3vw,38px)}
+.duo p{margin-top:10px;opacity:.85;font-size:15.5px;max-width:30ch}
+.duo .who{font-size:13.5px;opacity:.75;margin-bottom:auto}
+.duo .txt{display:flex;flex-direction:column;height:100%;gap:0}
+.duo .txt .who{margin-bottom:auto;padding-bottom:28px}
+.duo .mini{aspect-ratio:9/16;border-radius:16px;overflow:hidden;rotate:4deg;box-shadow:0 20px 40px -18px rgba(0,0,0,.6)}
+.duo .mini video{width:100%;height:100%;object-fit:cover}
+@media (max-width:420px){.duo article{grid-template-columns:1fr 112px;padding:24px}}
+
+/* servicios: bento */
+.bento{display:grid;gap:16px;margin-top:44px}
+@media (min-width:900px){.bento{grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(210px,auto)}
+  .b1{grid-column:span 3;grid-row:span 2}.b2{grid-column:span 3}.b3{grid-column:span 3}.b4{grid-column:span 2}.b5{grid-column:span 4}}
+.bento>div{border-radius:var(--r);padding:28px;position:relative;overflow:hidden;background:var(--surface);box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;justify-content:flex-end;min-height:220px}
+.bento h3{font-size:clamp(24px,2.3vw,32px)}
+.bento p{color:var(--ink-2);margin-top:8px;font-size:15.5px;max-width:40ch}
+.b1{background:var(--deep)!important;color:var(--on-deep);min-height:460px!important}
+.b1 p{color:color-mix(in srgb,var(--on-deep) 78%,transparent)}
+.b1 video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8}
+.b1 .in{position:relative}
+.b1::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,17,10,.92));pointer-events:none}
+.b1 .in{z-index:1}
+.b2{background:var(--accent)!important;color:var(--on-accent)}
+.b2 p{color:var(--on-accent);opacity:.8}
+.b3 .thumbs{position:absolute;top:22px;right:22px;display:flex}
+.b3 .thumbs img{width:58px;aspect-ratio:3/4;object-fit:cover;border-radius:10px;margin-left:-14px;box-shadow:0 0 0 3px var(--surface);rotate:var(--rt)}
+.b5{background:var(--salvia)!important;color:#1C311F}
+.b5 p{color:#465A47}
+.icon{width:30px;height:30px;margin-bottom:auto}
+
+/* proceso */
+.steps{display:grid;gap:14px;margin-top:44px;counter-reset:s}
+@media (min-width:860px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{list-style:none;border-top:2px solid var(--ink);padding-top:20px}
+.steps strong{font:700 22px var(--fd);display:block}
+.steps span{color:var(--ink-2);font-size:15.5px;display:block;margin-top:6px}
+
+/* testimonios */
+.quotes{display:grid;gap:18px;margin-top:44px}
+@media (min-width:860px){.quotes{grid-template-columns:repeat(2,1fr)}}
+.quotes figure{background:var(--surface);border-radius:var(--r);padding:30px;box-shadow:0 0 0 1px var(--line)}
+.quotes blockquote{font:500 clamp(20px,2vw,24px)/1.35 var(--fd);letter-spacing:-.01em}
+.quotes figcaption{margin-top:20px;font-size:15px;color:var(--ink-2)}
+.quotes figcaption b{color:var(--ink);display:block}
+
+/* instagram */
+.ig{margin-top:120px;background:var(--deep);color:var(--on-deep);border-radius:36px;padding:72px 0 0;overflow:hidden}
+.ig .top{display:flex;flex-direction:column;gap:24px;align-items:flex-start}
+.ig .handle{font:800 clamp(44px,10vw,150px)/.95 var(--fd);letter-spacing:-.04em;text-decoration:none;display:block}
+.ig .handle span{color:var(--accent)}
+.ig p{max-width:44ch;opacity:.8}
+.ig .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:56px;padding:0 8px 8px}
+@media (min-width:860px){.ig .grid{grid-template-columns:repeat(6,1fr)}}
+.ig .grid a{aspect-ratio:3/4;border-radius:14px;overflow:hidden;display:block;position:relative}
+.ig .grid img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .3s}
+.ig .grid a:hover img{transform:scale(1.06);opacity:.85}
+
+/* contacto */
+.contact{padding:120px 0 40px}
+.contact-box{display:grid;gap:40px}
+@media (min-width:900px){.contact-box{grid-template-columns:1.3fr 1fr;align-items:end}}
+.contact h2{font-size:clamp(44px,6.6vw,92px)}
+.datos{display:grid;gap:4px}
+.datos a{display:flex;justify-content:space-between;gap:16px;text-decoration:none;padding:18px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:18px;transition:padding .35s var(--ease)}
+.datos a:hover{padding-left:8px}
+.datos small{color:var(--ink-2);font-size:14px;font-weight:400}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:40px 0 48px;font-size:14px;color:var(--ink-2)}
+footer a{text-underline-offset:3px}
+
+/* animaciones de entrada (solo con JS y sin reducir movimiento) */
+.js .rv{opacity:0;transform:translateY(28px)}
+@media (prefers-reduced-motion:reduce){
+  .marquee .track{animation:none}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap bar">
+    <a href="#top" aria-label="CREZCA, inicio">
+      <img class="logo-dark" src="crezca-logo.png" alt="CREZCA" width="900" height="511">
+      <img class="logo-light" src="crezca-logo-claro.png" alt="CREZCA" width="900" height="511">
+    </a>
+    <nav class="links" aria-label="Secciones">
+      <a href="#trabajos">Trabajos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="right">
+      <a class="icon-btn" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Instagram de CREZCA">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <button class="icon-btn" id="theme" aria-label="Cambiar entre modo claro y oscuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <a class="btn btn-main" href="https://wa.me/5491130695519?text=Hola%20CREZCA%2C%20quiero%20consultar%20por%20las%20redes%20de%20mi%20comercio" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.1-4.5c-.6-.8-1.3-2.1-1.3-3.6 0-1.4.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.3.5-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.4Z"/></svg>
+        <span>Escribinos</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-top:104px">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>
+          <span class="ln"><span>Hacemos</span></span>
+          <span class="ln"><span><em>crecer</em> lo que</span></span>
+          <span class="ln"><span>ya tenés.</span></span>
+        </h1>
+        <p class="hero-p">Redes para comercios e inmobiliarias de Zona Sur: estrategia, diseño, reels con motion y publicación.</p>
+        <div class="ctas">
+          <a class="btn btn-main" href="https://wa.me/5491130695519?text=Hola%20CREZCA%2C%20quiero%20consultar%20por%20las%20redes%20de%20mi%20comercio" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.1-4.5c-.6-.8-1.3-2.1-1.3-3.6 0-1.4.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.3.5-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.4Z"/></svg>
+            Escribinos
+          </a>
+          <a class="btn btn-ghost" href="#trabajos">Ver trabajos</a>
+        </div>
+      </div>
+      <div class="stage" aria-label="Historias y carruseles hechos por CREZCA">
+        <div class="phone p1" data-depth="-60"><video src="media/st-artetextil.mp4" poster="media/st-artetextil.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Presentación de redes para Arte Textil"></video></div>
+        <div class="phone p2" data-depth="-130"><video src="media/st-floki.mp4" poster="media/st-floki.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Historia de la lámpara Floki para Di Cuore House"></video></div>
+        <div class="phone p3" data-depth="-30"><video src="media/st-bonatti.mp4" poster="media/st-bonatti.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Historia de tasación para Fernando Bonatti"></video></div>
+        <a class="sticker" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+          @somoscrezca
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Carruseles <img src="crezca-isotipo-claro.png" alt=""> Historias <img src="crezca-isotipo-claro.png" alt=""> Reels con motion <img src="crezca-isotipo-claro.png" alt=""> Estrategia <img src="crezca-isotipo-claro.png" alt=""> Meta Ads <img src="crezca-isotipo-claro.png" alt=""></span>
+      <span>Carruseles <img src="crezca-isotipo-claro.png" alt=""> Historias <img src="crezca-isotipo-claro.png" alt=""> Reels con motion <img src="crezca-isotipo-claro.png" alt=""> Estrategia <img src="crezca-isotipo-claro.png" alt=""> Meta Ads <img src="crezca-isotipo-claro.png" alt=""></span>
+    </div>
+  </div>
+
+  <section class="work" id="trabajos">
+    <div class="wrap work-head">
+      <h2 class="h2 rv">Trabajos recientes para clientes.</h2>
+      <p class="lead rv">Carruseles con producto, precio y medidas, pensados para vender desde la publicación.</p>
+    </div>
+    <div class="pan" id="pan">
+      <div class="pan-track" id="panTrack">
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-color.mp4" poster="media/fd-color.jpg" muted loop playsinline preload="none"></video></div><h3>Sumar color</h3><p>Di Cuore House · carrusel de asesoría</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-madison.mp4" poster="media/fd-madison.jpg" muted loop playsinline preload="none"></video></div><h3>Cómoda Madison</h3><p>Di Cuore House · carrusel de producto</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-ilum.mp4" poster="media/fd-ilum.jpg" muted loop playsinline preload="none"></video></div><h3>Iluminación</h3><p>Di Cuore House · tres lámparas, tres precios</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-sharp.mp4" poster="media/fd-sharp.jpg" muted loop playsinline preload="none"></video></div><h3>Cómoda Sharp</h3><p>Di Cuore House · post en motion</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-espacio.mp4" poster="media/fd-espacio.jpg" muted loop playsinline preload="none"></video></div><h3>Mandanos tu espacio</h3><p>Di Cuore House · servicio de asesoría</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-urban.mp4" poster="media/fd-urban.jpg" muted loop playsinline preload="none"></video></div><h3>Mesa Urban</h3><p>Di Cuore House · medidas y detalles</p></a>
+        <a class="card" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><div class="media"><video data-src="media/fd-madison-precio.mp4" poster="media/fd-madison-precio.jpg" muted loop playsinline preload="none"></video></div><h3>Precio a la vista</h3><p>Di Cuore House · placa de cierre con cuotas</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="caso">
+    <div class="wrap case">
+      <div class="sticky">
+        <span class="client-tag rv"><b>DC</b>Di Cuore House · deco y hogar</span>
+        <h2 class="h2 rv" style="margin-top:18px">Un hogar hecho de corazón, todos los días.</h2>
+        <p class="lead rv">Armamos la estrategia completa: tono de marca, siete pilares de contenido y piezas que responden las dudas antes de comprar. ¿Será igual a la foto? ¿Qué tamaño tiene? ¿Llega bien embalado?</p>
+        <div class="stages">
+          <div class="rv"><strong>Inspirar</strong><span>ambientes y estilos</span></div>
+          <div class="rv"><strong>Demostrar</strong><span>medidas y materiales</span></div>
+          <div class="rv"><strong>Convertir</strong><span>precio y WhatsApp</span></div>
+          <div class="rv"><strong>Fidelizar</strong><span>historias de clientes</span></div>
+        </div>
+      </div>
+      <div class="stories">
+        <div class="col col-a">
+          <div class="phone-s rv"><video data-src="media/st-serenos.mp4" poster="media/st-serenos.jpg" muted loop playsinline preload="none" aria-label="Historia de espacios serenos"></video></div>
+          <div class="phone-s rv"><video data-src="media/st-elegirla.mp4" poster="media/st-elegirla.jpg" muted loop playsinline preload="none" aria-label="Historia sobre cómo elegir una mesa"></video></div>
+        </div>
+        <div class="col col-b">
+          <div class="phone-s rv"><video data-src="media/st-capri.mp4" poster="media/st-capri.jpg" muted loop playsinline preload="none" aria-label="Historia de la grifería Capri"></video></div>
+          <div class="phone-s rv"><video data-src="media/st-mudanza.mp4" poster="media/st-mudanza.jpg" muted loop playsinline preload="none" aria-label="Historia sobre muebles que se quedan"></video></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="h2 rv">Cada marca con su propia voz.</h2>
+      <div class="duo">
+        <article class="bonatti rv">
+          <div class="txt">
+            <span class="who">Fernando Bonatti · inmobiliaria</span>
+            <h3>Tasaciones que se piden por historia.</h3>
+            <p>Animamos sus diseños para que las historias se vean y se respondan.</p>
+          </div>
+          <div class="mini"><video data-src="media/st-bonatti.mp4" poster="media/st-bonatti.jpg" muted loop playsinline preload="none" aria-label="Historia de tasación de Bonatti"></video></div>
+        </article>
+        <article class="arte rv">
+          <div class="txt">
+            <span class="who">Arte Textil · estampación textil</span>
+            <h3>Oficio que deja marca.</h3>
+            <p>Sistema gráfico de redes y una presentación en motion de sus servicios.</p>
+          </div>
+          <div class="mini"><video data-src="media/st-artetextil.mp4" poster="media/st-artetextil.jpg" muted loop playsinline preload="none" aria-label="Presentación de redes de Arte Textil"></video></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <h2 class="h2 rv">Qué hacemos por tu marca.</h2>
+      <div class="bento">
+        <div class="b1 rv">
+          <video data-src="media/st-online.mp4" poster="media/st-online.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <div class="in">
+            <h3>Gestión de redes</h3>
+            <p>Instagram y Facebook: calendario mensual, carruseles, historias, copys, publicación e informe de resultados.</p>
+          </div>
+        </div>
+        <div class="b2 rv">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="m10.5 9.5 4 2.5-4 2.5z" fill="currentColor"/></svg>
+          <h3>Reels y motion</h3>
+          <p>Tus placas cobran vida: animamos producto, precio y texto sin que tengas que salir en cámara.</p>
+        </div>
+        <div class="b3 rv">
+          <div class="thumbs" aria-hidden="true">
+            <img src="media/fd-floki.jpg" alt="" style="--rt:-8deg"><img src="media/fd-color.jpg" alt="" style="--rt:4deg"><img src="media/fd-urban.jpg" alt="" style="--rt:10deg">
+          </div>
+          <h3>Estrategia y estilo</h3>
+          <p>Voz, paleta y pilares de contenido para que tu feed se reconozca a primera vista.</p>
+        </div>
+        <div class="b4 rv">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+          <h3>Meta Ads</h3>
+          <p>Campañas de prueba con poco presupuesto para encontrar a tu público antes de invertir más.</p>
+        </div>
+        <div class="b5 rv">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.4 3.4-5.5 6.5-5.5s5.7 2.1 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.8 2.6 2.6 3 5.2"/></svg>
+          <h3>Influencers, UGC e imprenta</h3>
+          <p>Buscamos creadores afines a tu marca y diseñamos packaging, etiquetas y tarjetas con proveedores de confianza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap">
+      <h2 class="h2 rv">Una dinámica simple, sin perder tiempo.</h2>
+      <ol class="steps">
+        <li class="rv"><strong>Charlamos</strong><span>20 minutos para conocer tu comercio, tu público y lo que ya tenés.</span></li>
+        <li class="rv"><strong>Compartís el material</strong><span>Un Drive con fotos y datos. Arrancamos con lo que hay.</span></li>
+        <li class="rv"><strong>Planificamos el mes</strong><span>Brief de prioridades y calendario para que sepas qué sale y cuándo.</span></li>
+        <li class="rv"><strong>Publicamos y medimos</strong><span>Informe con lo que funcionó y qué ajustamos el mes siguiente.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="testimonios" hidden>
+    <div class="wrap">
+      <h2 class="h2 rv">Lo que dicen nuestros clientes.</h2>
+      <div class="quotes" id="quotes"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="ig rv-ig">
+      <div class="wrap top">
+        <a class="handle" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener">@somos<span>crezca</span></a>
+        <p>Mirá más trabajos, procesos y novedades en nuestro Instagram.</p>
+        <a class="btn btn-main" href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+          Seguinos en Instagram
+        </a>
+      </div>
+      <div class="grid">
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/st-floki.jpg" alt="Historia de la lámpara Floki"></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/fd-madison.jpg" alt="Carrusel de la cómoda Madison"></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/st-artetextil.jpg" alt="Presentación de Arte Textil"></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/fd-color.jpg" alt="Carrusel Sumar color"></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/st-bonatti.jpg" alt="Historia de Bonatti"></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener" aria-label="Ver en Instagram"><img loading="lazy" src="media/st-mudanza.jpg" alt="Historia Se queda"></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact" id="contacto">
+    <div class="wrap contact-box">
+      <div>
+        <h2 class="rv">Contanos de tu comercio.</h2>
+        <p class="lead rv">Lo charlamos en 20 minutos y te decimos por dónde arrancaríamos.</p>
+        <div class="rv" style="margin-top:32px">
+          <a class="btn btn-main" href="https://wa.me/5491130695519?text=Hola%20CREZCA%2C%20quiero%20consultar%20por%20las%20redes%20de%20mi%20comercio" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.1-4.5c-.6-.8-1.3-2.1-1.3-3.6 0-1.4.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.3.5-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.4Z"/></svg>
+            Escribinos
+          </a>
+        </div>
+      </div>
+      <div class="datos rv">
+        <a href="https://wa.me/5491130695519" target="_blank" rel="noopener">WhatsApp <small>+54 9 11 3069-5519</small></a>
+        <a href="mailto:holasomoscrezca@gmail.com">Mail <small>holasomoscrezca@gmail.com</small></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener">Instagram <small>@somoscrezca</small></a>
+      </div>
+    </div>
+    <footer class="wrap">
+      <span>© 2026 CREZCA · Estudio creativo de Zona Sur, Buenos Aires</span>
+      <a href="privacidad.html">Política de privacidad</a>
+    </footer>
+  </section>
+</main>
+
+<script>
+/* Testimonios: se muestran solo si hay alguno cargado acá, con el permiso del cliente. */
+const TESTIMONIOS = [
+  // { texto: "…", nombre: "Nombre Apellido", rol: "Cargo, Comercio" },
+];
+(function(){
+  if(!TESTIMONIOS.length) return;
+  const box=document.getElementById('quotes');
+  TESTIMONIOS.forEach(t=>{
+    const f=document.createElement('figure');f.className='rv';
+    const q=document.createElement('blockquote');q.textContent='“'+t.texto+'”';
+    const c=document.createElement('figcaption');const b=document.createElement('b');b.textContent=t.nombre;c.append(b,t.rol);
+    f.append(q,c);box.append(f);
+  });
+  document.getElementById('testimonios').hidden=false;
+})();
+
+/* Tema claro/oscuro */
+(function(){
+  const root=document.documentElement;
+  try{const s=localStorage.getItem('crezca-tema');if(s)root.dataset.theme=s;}catch(e){}
+  document.getElementById('theme').addEventListener('click',()=>{
+    const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark';
+    try{localStorage.setItem('crezca-tema',root.dataset.theme);}catch(e){}
+  });
+})();
+
+/* Videos: cargan y se reproducen solo cuando están en pantalla */
+(function(){
+  const vids=document.querySelectorAll('video');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const v=e.target;
+    if(e.isIntersecting){ if(v.dataset.src&&!v.src){v.src=v.dataset.src;} const p=v.play(); if(p)p.catch(()=>{}); }
+    else v.pause();
+  }),{rootMargin:'200px 200px'});
+  vids.forEach(v=>io.observe(v));
+})();
+</script>
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap) { document.querySelectorAll('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'}); return; }
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+  if(reduce){ gsap.set('.rv',{opacity:1,y:0}); return; }
+
+  /* Entrada del hero: el titular sube línea por línea, después el subrayado crece */
+  const tl=gsap.timeline({defaults:{ease:'expo.out'}});
+  tl.from('.hero h1 .ln>span',{yPercent:110,duration:1.1,stagger:.09})
+    .fromTo('.hero h1 em',{'--mark':0},{'--mark':1,duration:.8,ease:'power3.inOut'},'-=.5')
+    .from('.hero-p, .hero .ctas',{y:24,opacity:0,duration:.9,stagger:.08},'-=.7')
+    .from('.phone',{y:120,opacity:0,rotate:0,duration:1.2,stagger:.1},.15)
+    .from('.sticker',{scale:0,rotate:-30,duration:.8,ease:'back.out(2)'},'-=.6');
+
+  /* Profundidad en los teléfonos al bajar */
+  gsap.utils.toArray('.phone').forEach(p=>{
+    gsap.to(p,{y:+p.dataset.depth,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  });
+
+  /* Nav se esconde al bajar y vuelve al subir */
+  const nav=document.getElementById('nav');
+  ScrollTrigger.create({start:120,end:'max',onUpdate:s=>nav.classList.toggle('hide',s.direction===1&&s.scroll()>400)});
+
+  /* Aparición de bloques al entrar en pantalla */
+  ScrollTrigger.batch('.rv',{start:'top 88%',once:true,
+    onEnter:b=>gsap.to(b,{opacity:1,y:0,duration:1,ease:'expo.out',stagger:.08})});
+
+  /* Marquee acelera con la velocidad del scroll */
+  const track=document.querySelector('.marquee .track');
+  ScrollTrigger.create({onUpdate:s=>{const v=Math.min(Math.abs(s.getVelocity())/600,3);track.style.animationDuration=(32/(1+v))+'s';}});
+
+  /* Trabajos: paneo horizontal fijado (solo escritorio) */
+  ScrollTrigger.matchMedia({
+    '(min-width: 768px)':function(){
+      const pan=document.getElementById('pan'),t=document.getElementById('panTrack');
+      const dist=()=>Math.max(0,t.scrollWidth-window.innerWidth);
+      gsap.to(t,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#trabajos',start:'top top',end:()=>'+='+dist(),pin:'#trabajos',scrub:1,invalidateOnRefresh:true}});
+    }
+  });
+
+  /* Columnas de historias a distinta velocidad */
+  gsap.to('.col-b',{y:-80,ease:'none',scrollTrigger:{trigger:'.stories',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.col-a',{y:40,ease:'none',scrollTrigger:{trigger:'.stories',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* Bloque de Instagram: se abre al entrar */
+  gsap.from('.ig',{scale:.92,borderRadius:80,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:'.ig',start:'top 85%'}});
+  gsap.from('.ig .grid a',{y:60,opacity:0,stagger:.06,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'.ig .grid',start:'top 92%'}});
+  gsap.from('.ig .handle',{x:-60,ease:'none',scrollTrigger:{trigger:'.ig',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+</body>
+</html>
