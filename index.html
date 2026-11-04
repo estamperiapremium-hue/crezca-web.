@@ -244,9 +244,15 @@ section{padding:112px 0 0}
 @media (min-width:900px){.contact-box{grid-template-columns:1.3fr 1fr;align-items:end}}
 .contact h2{font-size:clamp(44px,6.6vw,92px)}
 .datos{display:grid;gap:4px}
-.datos a{display:flex;justify-content:space-between;gap:16px;text-decoration:none;padding:18px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:18px;transition:padding .35s var(--ease)}
+.datos a{display:flex;align-items:center;gap:16px;text-decoration:none;padding:16px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:18px;transition:padding .35s var(--ease)}
 .datos a:hover{padding-left:8px}
-.datos small{color:var(--ink-2);font-size:14px;font-weight:400}
+.datos .ic{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);transition:transform .35s var(--ease)}
+.datos .ic svg{width:22px;height:22px}
+.datos a:hover .ic{transform:rotate(-8deg) scale(1.06)}
+.datos .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.datos small{color:var(--ink-2);font-size:14px;font-weight:400;overflow-wrap:anywhere}
+.datos .go{margin-left:auto;font-size:20px;opacity:.5;transition:transform .35s var(--ease),opacity .3s}
+.datos a:hover .go{transform:translateX(4px);opacity:1}
 footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:40px 0 48px;font-size:14px;color:var(--ink-2)}
 footer a{text-underline-offset:3px}
 
@@ -516,9 +522,9 @@ footer a{text-underline-offset:3px}
         </div>
       </div>
       <div class="datos rv">
-        <a href="https://wa.me/5491130695519" target="_blank" rel="noopener">WhatsApp <small>+54 9 11 3069-5519</small></a>
-        <a href="mailto:holasomoscrezca@gmail.com">Mail <small>holasomoscrezca@gmail.com</small></a>
-        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener">Instagram <small>@somoscrezca</small></a>
+        <a href="https://wa.me/5491130695519" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.1-4.5c-.6-.8-1.3-2.1-1.3-3.6 0-1.4.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.3.5-.4.5c-.2.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.4Z"/></svg></span><span class="tx">WhatsApp<small>+54 9 11 3069-5519</small></span><span class="go" aria-hidden="true">→</span></a>
+        <a href="mailto:holasomoscrezca@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span><span class="tx">Mail<small>holasomoscrezca@gmail.com</small></span><span class="go" aria-hidden="true">→</span></a>
+        <a href="https://www.instagram.com/somoscrezca/" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></span><span class="tx">Instagram<small>@somoscrezca</small></span><span class="go" aria-hidden="true">→</span></a>
       </div>
     </div>
     <footer class="wrap">
